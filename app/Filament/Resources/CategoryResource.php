@@ -64,11 +64,30 @@ Forms\Components\TextInput::make('name')
             ->columns([
                 //
                 Tables\Columns\TextColumn::make('id')->sortable(),
+            
+                Tables\Columns\ImageColumn::make('image')
+        ->label('Category Image')
+        ->rounded()
+        ->width(60)
+        ->height(60)
+        ->toggleable() // optional: user can hide this column
+        ->placeholder(url('/images/placeholder.png')), // optional placeholder if no image
+
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('slug')->searchable(),
                 
-                Tables\Columns\BooleanColumn::make('status')->label('Active'),
+                    Tables\Columns\BooleanColumn::make('status')
+        ->label('Active')
+        ->sortable()
+        ->trueIcon('heroicon-o-check-circle')
+        ->falseIcon('heroicon-o-x-circle')
+        ->colors([
+            'success' => true,
+            'danger' => false,
+        ]),
+
                 Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y'),
+      
             ])
             ->filters([
                 //
